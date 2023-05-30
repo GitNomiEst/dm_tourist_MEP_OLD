@@ -30,7 +30,7 @@ public class TripRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/Trip/{destination}", method = RequestMethod.GET)
+	@RequestMapping(value = "travel/trip/{destination}", method = RequestMethod.GET)
 	public ResponseEntity<List<Trip>> getTripByDestination(@PathVariable("Destination") String destination) {
 		List<Trip> result = this.repository.findTripByDestination(destination);
 
