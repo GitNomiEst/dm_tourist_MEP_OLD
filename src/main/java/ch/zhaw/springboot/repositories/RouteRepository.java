@@ -9,6 +9,9 @@ import ch.zhaw.springboot.entities.Route;
 
 public interface RouteRepository extends JpaRepository<Route, Long>{
 
+    @Query("SELECT r FROM Route r WHERE r.id = ?1")
+    public List<Route> findRouteByID(Long id);
+
     @Query("SELECT r FROM Route r WHERE r.distance = ?1")
     public List<Route> findRouteByDistance(Long distance);
 

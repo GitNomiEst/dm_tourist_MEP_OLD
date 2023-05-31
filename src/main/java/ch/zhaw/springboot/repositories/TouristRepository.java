@@ -9,6 +9,9 @@ import ch.zhaw.springboot.entities.Tourist;
 
 public interface TouristRepository extends JpaRepository<Tourist, String> {
 
+    @Query("SELECT t FROM Tourist t WHERE t.id = ?1")
+    public List<Tourist> findTouristByID(Long id);
+
     @Query("SELECT t FROM Tourist t WHERE t.name = ?1")
     public List<Tourist> findTouristByName(String name);
 
