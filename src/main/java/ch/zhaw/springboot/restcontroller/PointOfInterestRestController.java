@@ -30,9 +30,9 @@ public class PointOfInterestRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/PointOfInterest/{category}", method = RequestMethod.GET)
-	public ResponseEntity<List<PointOfInterest>> getPointOfInterestByCategory(@PathVariable("Category") String category) {
-		List<PointOfInterest> result = this.repository.findPointOfInterestByCategory(category);
+	@RequestMapping(value = "travel/PointOfInterest/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<PointOfInterest>> getPointOfInterestByID(@PathVariable("ID") Long id) {
+		List<PointOfInterest> result = this.repository.findPointOfInterestByID(id);
 
 		if (!result.isEmpty()) {
 			return new ResponseEntity<List<PointOfInterest>>(result, HttpStatus.OK);

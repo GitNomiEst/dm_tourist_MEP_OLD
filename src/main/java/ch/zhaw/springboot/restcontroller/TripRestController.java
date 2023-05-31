@@ -30,9 +30,9 @@ public class TripRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/trip/{destination}", method = RequestMethod.GET)
-	public ResponseEntity<List<Trip>> getTripByDestination(@PathVariable("Destination") String destination) {
-		List<Trip> result = this.repository.findTripByDestination(destination);
+	@RequestMapping(value = "travel/trip/{ID}", method = RequestMethod.GET)
+	public ResponseEntity<List<Trip>> getTripByID(@PathVariable("ID") Long ID) {
+		List<Trip> result = this.repository.findTripByID(ID);
 
 		if (!result.isEmpty()) {
 			return new ResponseEntity<List<Trip>>(result, HttpStatus.OK);

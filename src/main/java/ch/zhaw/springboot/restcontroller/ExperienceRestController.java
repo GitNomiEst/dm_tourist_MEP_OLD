@@ -30,9 +30,9 @@ public class ExperienceRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/experience/{duration}", method = RequestMethod.GET)
-	public ResponseEntity<List<Experience>> getExperienceByDuration(@PathVariable("Duration") long duration) {
-		List<Experience> result = this.repository.findExperienceByDuration(duration);
+	@RequestMapping(value = "travel/experience/{ID}", method = RequestMethod.GET)
+	public ResponseEntity<List<Experience>> getExperienceByID(@PathVariable("ID") Long ID) {
+		List<Experience> result = this.repository.findExperienceByID(ID);
 
 		if (!result.isEmpty()) {
 			return new ResponseEntity<List<Experience>>(result, HttpStatus.OK);

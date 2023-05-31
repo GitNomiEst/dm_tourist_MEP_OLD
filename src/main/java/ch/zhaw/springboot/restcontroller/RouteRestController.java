@@ -30,9 +30,9 @@ public class RouteRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/route/{distance}", method = RequestMethod.GET)
-	public ResponseEntity<List<Route>> getRouteByDistance(@PathVariable("Distance") long distance) {
-		List<Route> result = this.repository.findRouteByDistance(distance);
+	@RequestMapping(value = "travel/route/{ID}", method = RequestMethod.GET)
+	public ResponseEntity<List<Route>> getRouteByID(@PathVariable("ID") Long ID) {
+		List<Route> result = this.repository.findRouteByID(ID);
 
 		if (!result.isEmpty()) {
 			return new ResponseEntity<List<Route>>(result, HttpStatus.OK);
