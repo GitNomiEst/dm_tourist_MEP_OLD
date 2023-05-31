@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import ch.zhaw.springboot.entities.PointOfInterest;
 
-public class PointOfInterestRepository extends JpaRepository<PointOfInterest, String>{
+public interface PointOfInterestRepository extends JpaRepository<PointOfInterest, String>{
     
     @Query("SELECT i FROM PointOfInterest i WHERE i.category = ?1")
     public List<PointOfInterest> findPointOfInterestByCategory(String category);

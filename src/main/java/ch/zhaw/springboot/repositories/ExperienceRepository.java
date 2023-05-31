@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import ch.zhaw.springboot.entities.Experience;
 
-public class ExperienceRepository extends JpaRepository<Experience, Long>{
+public interface ExperienceRepository extends JpaRepository<Experience, Long>{
 
     @Query("SELECT e FROM Experience e WHERE e.duration = ?1")
     public List<Experience> findExperienceByDuration(Long duration);

@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import ch.zhaw.springboot.entities.Trip;
 
-public class TripRepository extends JpaRepository<Trip, String> {
+public interface TripRepository extends JpaRepository<Trip, String> {
 
     @Query("SELECT t FROM Trip t WHERE t.destination = ?1")
-    public List<Trip> findTripByDestination(String destination);
-    
+    public List<Trip> findTripByPatientId(long destination);
+
 }
