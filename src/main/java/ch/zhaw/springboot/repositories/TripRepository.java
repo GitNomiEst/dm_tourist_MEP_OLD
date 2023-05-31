@@ -10,6 +10,6 @@ import ch.zhaw.springboot.entities.Trip;
 public interface TripRepository extends JpaRepository<Trip, String> {
 
     @Query("SELECT t FROM Trip t WHERE t.destination = ?1")
-    public List<Trip> findTripByPatientId(long destination);
+    public List<Trip> findTripByDestination(String destination);
 
 }
