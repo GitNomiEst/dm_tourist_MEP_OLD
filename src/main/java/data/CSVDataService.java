@@ -28,7 +28,7 @@ public class CSVDataService {
         Resource resource = resourceLoader.getResource("classpath:test/resources/dm_data_csv/data.csv");
 
         try (Reader reader = new InputStreamReader(resource.getInputStream())) {
-            CSVParser csvParser = CSVFormat.DEFAULT.withHeader().parse(reader);
+            CSVParser csvParser = CSVFormat.DEFAULT.withHeader<>.parse(reader);
             
             // Process each CSV record
             for (CSVRecord record : csvParser) {
