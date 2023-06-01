@@ -15,7 +15,7 @@ public interface TouristRepository extends JpaRepository<Tourist, String> {
     @Query("SELECT t FROM Tourist t WHERE t.name = ?1")
     public List<Tourist> findTouristByName(String name);
 
-    @Query("SELECT t FROM Tourist t WHERE t.country = ?1")
-    public List<Tourist> findTouristByCountry(String country);
+    @Query("SELECT t FROM Tourist t WHERE t.nationality = ?1")
+    public List<Tourist> findTouristByNationality(String nationality);
     
 }

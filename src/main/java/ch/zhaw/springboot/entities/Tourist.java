@@ -13,11 +13,11 @@ public class Tourist {
     private long id;
 
     private String name; 
-    private String country;
+    private String nationality;
 
-    public Tourist(String name, String country) {
+    public Tourist(String name, String nationality) {
         this.name = name;
-        this.country = country;
+        this.nationality = nationality;
     }
 
     public Tourist() {
@@ -27,7 +27,7 @@ public class Tourist {
     public String getName() {
         return name;
     }
-    public String getCountry() {
-        return country;
+    public String getNationality() {
+        return nationality;
     }
 }
