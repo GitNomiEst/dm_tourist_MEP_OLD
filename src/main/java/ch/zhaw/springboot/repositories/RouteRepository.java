@@ -13,7 +13,7 @@ public interface RouteRepository extends JpaRepository<Route, Long>{
     public List<Route> findRouteByID(Long id);
 
     @Query("SELECT r FROM Route r WHERE r.distance = ?1")
-    public List<Route> findRouteByDistance(Long distance);
+    public List<Route> findRouteByDistance(String distance);
 
     @Query("SELECT r FROM Route r WHERE r.destination = ?1")
     public List<Route> findRouteByDestination(String destination);

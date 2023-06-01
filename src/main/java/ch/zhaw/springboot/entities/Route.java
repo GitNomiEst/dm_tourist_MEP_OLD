@@ -16,9 +16,9 @@ public class Route extends Trip {
     @OneToMany
     private Trip trip;
 
-    private long distance;
+    private String distance;
 
-    public Route(String destination, long distance) {
+    public Route(String destination, String distance) {
         super(destination);
         this.distance = distance;
     }
@@ -27,7 +27,7 @@ public class Route extends Trip {
 
     }
 
-    public long getDistance() {
+    public String getDistance() {
         return distance;
     }   
 }
