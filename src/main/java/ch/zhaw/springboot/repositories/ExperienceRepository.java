@@ -13,6 +13,6 @@ public interface ExperienceRepository extends JpaRepository<Experience, Long>{
     public List<Experience> findExperienceByID(Long id);
 
     @Query("SELECT e FROM Experience e WHERE e.duration = ?1")
-    public List<Experience> findExperienceByDuration(Long duration);
+    public List<Experience> findExperienceByDuration(String duration);
     
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+import ch.zhaw.springboot.entities.Trip;
+
 public class DataRestController {
     
     private final CSVDataService csvDataService;
@@ -14,7 +16,7 @@ public class DataRestController {
     }
 
     @GetMapping("/data")
-    public List<TripData> getData() throws IOException {
+    public List<Trip> getData() throws IOException {
         return csvDataService.loadCSVData();
     }
 }

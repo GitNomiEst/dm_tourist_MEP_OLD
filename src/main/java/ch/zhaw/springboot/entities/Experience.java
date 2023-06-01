@@ -16,9 +16,9 @@ public class Experience {
     @ManyToOne
     private Tourist tourist;
 
-    private long duration;
+    private String duration;
 
-    public Experience(long duration) {
+    public Experience(String duration) {
         this.duration = duration;
     }
 
@@ -26,7 +26,7 @@ public class Experience {
         
     }
 
-    public long getDuration() {
+    public String getDuration() {
         return duration;
     }
 }
