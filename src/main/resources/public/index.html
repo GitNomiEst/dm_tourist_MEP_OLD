@@ -58,18 +58,17 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Yup :-)</h1>
+		<h1>Welcome to the DM Project for the MEP FS23</h1>
 
 		<form>
 			<div class="form-group">
-				<label for="inputLocation">Birthdate</label> <input type="number"
-					class="form-control" id="inputBirthdate"
-					aria-describedby="inputHelp" placeholder="Enter Birthdate OR Leave Empty"><small
+				<label for="inputLocation">Name</label> <input type="number"
+					class="form-control" id="inputName"
+					aria-describedby="inputHelp" placeholder="Enter Name OR Leave Empty"><small
 					id="inputHelp" class="form-text text-muted">Please enter a
-					birthdate (e.g. 489912023) or leave empty to display all persons</small>
+					name (e.g. Jon) or leave empty to display all persons</small>
 			</div>
-			<button type="button" class="btn btn-primary" onclick="go()">Go
-				:-)</button>
+			<button type="button" class="btn btn-primary" onclick="go()">Enter</button>
 		</form>
 
 		<p>&nbsp;</p>
@@ -77,7 +76,6 @@
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Birthdate</th>
 				</tr>
 			</thead>
 			<tbody id="personTable"></tbody>

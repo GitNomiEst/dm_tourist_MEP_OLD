@@ -8,11 +8,11 @@ import jakarta.persistence.Id;
 @Entity
 public class Tourist {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name; 
+    private String name;
     private String nationality;
 
     public Tourist(String name, String nationality) {
@@ -27,6 +27,7 @@ public class Tourist {
     public String getName() {
         return name;
     }
+
     public String getNationality() {
         return nationality;
     }

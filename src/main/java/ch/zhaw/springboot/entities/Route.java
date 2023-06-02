@@ -8,8 +8,8 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Route extends Trip {
-    
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -29,5 +29,5 @@ public class Route extends Trip {
 
     public String getDistance() {
         return distance;
-    }   
+    }
 }

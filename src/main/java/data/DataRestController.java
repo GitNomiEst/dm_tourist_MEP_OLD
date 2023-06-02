@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ch.zhaw.springboot.entities.Trip;
 
 public class DataRestController {
-    
+
     private final CSVDataService csvDataService;
 
     public DataRestController(CSVDataService csvDataService) {

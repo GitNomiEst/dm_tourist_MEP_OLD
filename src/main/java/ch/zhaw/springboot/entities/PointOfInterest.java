@@ -5,13 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 @Entity
 public class PointOfInterest extends Trip {
 
     private String category;
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -21,10 +20,10 @@ public class PointOfInterest extends Trip {
     }
 
     public PointOfInterest() {
-        
+
     }
 
     public String getCategory() {
         return category;
-    }    
+    }
 }

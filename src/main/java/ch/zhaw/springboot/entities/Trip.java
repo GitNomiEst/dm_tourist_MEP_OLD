@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Trip {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private List<Experience> experienceList = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class Trip {
     }
 
     public Trip() {
-        
+
     }
 
     public String getDestination() {

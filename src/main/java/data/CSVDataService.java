@@ -70,27 +70,32 @@ public class CSVDataService {
 
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
 
-        String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '" + tourist.getNationality() + "');";
+        String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '"
+                + tourist.getNationality() + "');";
         String experienceInsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
-        String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination() + "', '" + trip.getDistance() + "');";
+        String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination()
+                + "', '" + trip.getDistance() + "');";
 
-    // Save to SQL files
-    try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
-        writer.println(touristInsertStatement);
-    } catch (IOException e) {
-        logger.error("An error occurred while writing to the file.", e);
-    }
+        // Save to SQL files
+        try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
+            writer.println(touristInsertStatement);
+        } catch (IOException e) {
+            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
+                                                                             // framework log4j
+        }
 
-    try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
-        writer.println(experienceInsertStatement);
-    } catch (IOException e) {
-        logger.error("An error occurred while writing to the file.", e);
-    }
+        try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
+            writer.println(experienceInsertStatement);
+        } catch (IOException e) {
+            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
+                                                                             // framework log4j
+        }
 
-    try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.sql"))) {
-        writer.println(tripInsertStatement);
-    } catch (IOException e) {
-        logger.error("An error occurred while writing to the file.", e);
+        try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.sql"))) {
+            writer.println(tripInsertStatement);
+        } catch (IOException e) {
+            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
+                                                                             // framework log4j
+        }
     }
-    }   
 }

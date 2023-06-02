@@ -16,7 +16,7 @@ import ch.zhaw.springboot.repositories.ExperienceRepository;
 @RestController
 public class ExperienceRestController {
 
-    @Autowired
+	@Autowired
 	private ExperienceRepository repository;
 
 	@RequestMapping(value = "travel/experience", method = RequestMethod.GET)
@@ -39,5 +39,5 @@ public class ExperienceRestController {
 		} else {
 			return new ResponseEntity<List<Experience>>(HttpStatus.NOT_FOUND);
 		}
-	}    
+	}
 }
