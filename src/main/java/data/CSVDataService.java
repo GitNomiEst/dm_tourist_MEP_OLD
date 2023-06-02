@@ -12,8 +12,10 @@ import ch.zhaw.springboot.entities.Route;
 import ch.zhaw.springboot.entities.Tourist;
 import ch.zhaw.springboot.entities.Trip;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,17 +66,27 @@ public class CSVDataService {
 
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
 
-        String touristinsertStatement = "INSERT INTO tourist (name) VALUES ('" + tourist.getName() + "');";
-        String touristinsertStatement1 = "INSERT INTO tourist (nationality) VALUES ('" + tourist.getNationality() + "');";
+        String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '" + tourist.getNationality() + "');";
         String experienceinsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
-        String tripinsertStatement = "INSERT INTO trips VALUES ('" + trip.getDestination() + "');";
-        String tripinsertStatement1 = "INSERT INTO trips VALUES ('" + trip.getDistance() + "');";
+        String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination() + "', '" + trip.getDistance() + "');";
 
-        // Output
-        System.out.println(touristinsertStatement);
-        System.out.println(touristinsertStatement1);
-        System.out.println(experienceinsertStatement);
-        System.out.println(tripinsertStatement);
-        System.out.println(tripinsertStatement1);
+        // Save to SQL files
+        try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
+            writer.println(touristInsertStatement);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.txt"))) {
+            writer.println(experienceinsertStatement);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.txt"))) {
+            writer.println(tripInsertStatement);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }   
 }
