@@ -12,6 +12,9 @@ import ch.zhaw.springboot.entities.Route;
 import ch.zhaw.springboot.entities.Tourist;
 import ch.zhaw.springboot.entities.Trip;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +26,7 @@ import java.util.List;
 @Service
 public class CSVDataService {
     private final ResourceLoader resourceLoader;
+    private static final Logger logger = LogManager.getLogger(CSVDataService.class);
 
     public CSVDataService(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
@@ -67,26 +71,26 @@ public class CSVDataService {
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
 
         String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '" + tourist.getNationality() + "');";
-        String experienceinsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
+        String experienceInsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
         String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination() + "', '" + trip.getDistance() + "');";
 
-        // Save to SQL files
-        try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
-            writer.println(touristInsertStatement);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // Save to SQL files
+    try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
+        writer.println(touristInsertStatement);
+    } catch (IOException e) {
+        logger.error("An error occurred while writing to the file.", e);
+    }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.txt"))) {
-            writer.println(experienceinsertStatement);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
+        writer.println(experienceInsertStatement);
+    } catch (IOException e) {
+        logger.error("An error occurred while writing to the file.", e);
+    }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.txt"))) {
-            writer.println(tripInsertStatement);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.sql"))) {
+        writer.println(tripInsertStatement);
+    } catch (IOException e) {
+        logger.error("An error occurred while writing to the file.", e);
+    }
     }   
 }
