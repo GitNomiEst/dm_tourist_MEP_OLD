@@ -81,21 +81,24 @@ public class CSVDataService {
             writer.println(touristInsertStatement);
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
-                                                                             // framework log4j
+                                                                             // framework Log4j: why? provides more
+                                                                             // flexibility & control over logging
+                                                                             // compared to printing stack traces with
+                                                                             // e.printStackTrace() /allows to
+                                                                             // configure log levels, log destinations,
+                                                                             // & format log messages
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
             writer.println(experienceInsertStatement);
         } catch (IOException e) {
-            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
-                                                                             // framework log4j
+            logger.error("An error occurred while writing to the file.", e);
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.sql"))) {
             writer.println(tripInsertStatement);
         } catch (IOException e) {
-            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
-                                                                             // framework log4j
+            logger.error("An error occurred while writing to the file.", e);
         }
     }
 }

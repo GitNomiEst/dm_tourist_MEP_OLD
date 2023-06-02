@@ -1,7 +1,4 @@
-# springboot-starter-zero
+# DM Project for MEP
 
-**java.lang.reflect.InaccessibleObjectException when starting application?**
-
-Edit your run configuration and add the following VM argument:
-
---add-opens java.base/java.lang=ALL-UNNAMED
+# Start app
+mvn spring-boot:run -e "c:\Users\nobo\dm_tourist_MEP\pom.xml"
