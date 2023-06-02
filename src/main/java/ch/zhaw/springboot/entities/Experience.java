@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Experience {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -23,7 +23,7 @@ public class Experience {
     }
 
     public Experience() {
-        
+
     }
 
     public String getDuration() {

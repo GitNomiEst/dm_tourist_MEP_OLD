@@ -16,7 +16,7 @@ import ch.zhaw.springboot.repositories.RouteRepository;
 @RestController
 public class RouteRestController {
 
-    @Autowired
+	@Autowired
 	private RouteRepository repository;
 
 	@RequestMapping(value = "travel/route", method = RequestMethod.GET)
@@ -39,5 +39,5 @@ public class RouteRestController {
 		} else {
 			return new ResponseEntity<List<Route>>(HttpStatus.NOT_FOUND);
 		}
-	}    
+	}
 }

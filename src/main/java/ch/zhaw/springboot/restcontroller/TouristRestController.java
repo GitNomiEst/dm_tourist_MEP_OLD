@@ -16,7 +16,7 @@ import ch.zhaw.springboot.repositories.TouristRepository;
 @RestController
 public class TouristRestController {
 
-    @Autowired
+	@Autowired
 	private TouristRepository repository;
 
 	@RequestMapping(value = "travel/tourist", method = RequestMethod.GET)
@@ -39,5 +39,5 @@ public class TouristRestController {
 		} else {
 			return new ResponseEntity<List<Tourist>>(HttpStatus.NOT_FOUND);
 		}
-	}    
+	}
 }

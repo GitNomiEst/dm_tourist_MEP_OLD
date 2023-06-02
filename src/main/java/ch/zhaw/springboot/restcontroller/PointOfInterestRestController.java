@@ -16,7 +16,7 @@ import ch.zhaw.springboot.repositories.PointOfInterestRepository;
 @RestController
 public class PointOfInterestRestController {
 
-    @Autowired
+	@Autowired
 	private PointOfInterestRepository repository;
 
 	@RequestMapping(value = "travel/pointOfInterest", method = RequestMethod.GET)
@@ -39,5 +39,5 @@ public class PointOfInterestRestController {
 		} else {
 			return new ResponseEntity<List<PointOfInterest>>(HttpStatus.NOT_FOUND);
 		}
-	}    
+	}
 }
