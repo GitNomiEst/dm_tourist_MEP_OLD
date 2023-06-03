@@ -7,17 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private List<Experience> experienceList = new ArrayList<>();
-
-    @OneToMany
-    private Experience experience;
+    private long id;
 
     private String destination;
 

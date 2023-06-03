@@ -16,6 +16,9 @@ public class Experience {
     @ManyToOne
     private Tourist tourist;
 
+    @ManyToOne
+    private Trip trip;
+
     private String duration;
 
     public Experience(String duration) {

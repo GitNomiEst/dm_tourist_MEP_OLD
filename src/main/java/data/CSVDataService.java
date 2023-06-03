@@ -82,11 +82,11 @@ public class CSVDataService {
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
                                                                              // framework Log4j: why? provides more
-                                                                             // flexibility & control over logging
+                                                                             // flexibility and control over logging
                                                                              // compared to printing stack traces with
                                                                              // e.printStackTrace() /allows to
                                                                              // configure log levels, log destinations,
-                                                                             // & format log messages
+                                                                             // ad format log messages
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
