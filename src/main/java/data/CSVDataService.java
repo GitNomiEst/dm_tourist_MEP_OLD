@@ -3,6 +3,7 @@ package data;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ import ch.zhaw.springboot.entities.Experience;
 import ch.zhaw.springboot.entities.Route;
 import ch.zhaw.springboot.entities.Tourist;
 import ch.zhaw.springboot.entities.Trip;
+import ch.zhaw.springboot.repositories.ExperienceRepository;
+import ch.zhaw.springboot.repositories.TouristRepository;
+import ch.zhaw.springboot.repositories.TripRepository;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +36,14 @@ public class CSVDataService {
         this.resourceLoader = resourceLoader;
     }
 
+    @Autowired
+    private final TripRepository tripRepository;
+
+    @Autowired
+    private final ExperienceRepository experienceRepository;
+
+    @Autowired
+    private final TouristRepository touristRepository;
     public List<Trip> loadCSVData() throws IOException {
         List<Trip> trips = new ArrayList<>();
 
@@ -62,6 +74,11 @@ public class CSVDataService {
 
                 // Generate SQL insert statement
                 generateInsertStatement(tourist, experience, trip);
+
+                tripRepository.save(trip);
+                experienceRepository.save(experience);
+                touristRepository.save(tourist);
+
             }
         }
 
