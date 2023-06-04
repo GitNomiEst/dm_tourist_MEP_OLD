@@ -2,6 +2,7 @@ package ch.zhaw.springboot.data_export;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,8 @@ import ch.zhaw.springboot.repositories.TouristRepository;
 
 @Component
 public class mongo_export {
-    private final String nodesCsvFile = "nodes.csv";
-    private final String edgesCsvFile = "edges.csv";
+    private final String nodesCsvFile = Paths.get("src", "main", "resources", "neo4j", "nodes.csv").toString();
+    private final String edgesCsvFile = Paths.get("src", "main", "resources", "neo4j", "edges.csv").toString();
 
     private ConnectionString connectionString = new ConnectionString(
             "mongodb+srv://kaeseno1:eXuzhJ-ZV6KUH4t@cluster0.4pnoho7.mongodb.net/?retryWrites=true&w=majority");

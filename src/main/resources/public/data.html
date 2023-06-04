@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DM MEP Data</title>
+    <link rel="stylesheet" type="text/css" href="global.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        .search-bar-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        #searchBar {
+            width: 300px;
+        }
+    </style>
+    <script>
+        //------------
+        //Tourist
+        //------------
+        $(document).ready(function () {
+            // Fetch tourist data from the server
+            $.get('/travel/tourist', function (data) {
+                // Process the data and generate HTML content
+                var content = '';
+                for (var i = 0; i < data.length; i++) {
+                    var tourist = data[i];
+                    content += '<div class="col mb-4 tourist-card">';
+                    content += '<div class="card">';
+                    content += '<div class="card-body">';
+                    content += '<h5 class="card-title">' + tourist.name + '</h5>';
+                    content += '<p class="card-text">Nationality: ' + tourist.nationality + '</p>';
+                    content += '<p class="card-text">Tourist ID: ' + tourist.id + '</p>';
+                    content += '</div>';
+                    content += '</div>';
+                    content += '</div>';
+                }
+
+                // Populate the tourist data in the HTML
+                $('#touristData').html(content);
+
+                // Hide all tourist cards initially
+                $('.tourist-card').hide();
+            });
+
+            // Show/hide tourist cards on button click
+            $('#showDetailsToBtn').click(function () {
+                $('.tourist-card').toggle();
+            });
+        });
+
+        //------------
+        //Trip
+        //------------
+        $(document).ready(function () {
+            // Fetch trip data from the server
+            $.get('/travel/trip', function (data) {
+                // Process the data and generate HTML content
+                var content = '';
+                for (var i = 0; i < data.length; i++) {
+                    var trip = data[i];
+                    content += '<div class="col mb-4 trip-card">';
+                    content += '<div class="card">';
+                    content += '<div class="card-body">';
+                    content += '<h5 class="card-title">Destination: ' + trip.destination + '</h5>';
+                    content += '<p class="card-text">Trip ID: ' + trip.id + '</p>';
+                    content += '</div>';
+                    content += '</div>';
+                    content += '</div>';
+                }
+
+                // Populate the trip data in the HTML
+                $('#tripData').html(content);
+
+                // Hide all trip cards initially
+                $('.trip-card').hide();
+            });
+
+            // Show/hide trip cards on button click
+            $('#showDetailsTrBtn').click(function () {
+                $('.trip-card').toggle();
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">DM MEP Project</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="model.html">ER Model</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testdata.html">Testdata</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insertsql.html">Insert SQL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="data.html">Data</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Data representation</h1>
+        <p>Noémie Käser, WIN TZ DSb</p>
+        <hr class="border border-primary border-3 opacity-75">
+
+        <h2>Tourists</h2>
+        <button id="showDetailsToBtn" class="btn btn-primary">Show/Hide Details</button>
+        <div id="touristData" class="row row-cols-5"></div>
+
+        <br>
+
+        <h2>Trips</h2>
+        <button id="showDetailsTrBtn" class="btn btn-primary">Show/Hide Details</button>
+        <div id="tripData" class="row row-cols-5"></div>
+    </div>
+</body>
+
+</html>
