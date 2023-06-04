@@ -1,88 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html>
 <head>
-<title>Tourists</title>
-<link rel="stylesheet" type="text/css"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<title>Tourists & Destinations</title>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
-	function go() {
-		syso("> Running ...");
 
-		birthdate = document.getElementById("inputBirthdate").value;
-
-		var query = "tourist/";
-		if (query) {
-			query = "tourist/" + name;
-		}
-
-		$.get('http://localhost:8080/tourist/' + query, function(response) {
-			displayPersons(response);
-		});
-
-		setTimeout(function() {
-			syso("> Done");
-		}, 1000);
-
-	}
-
-	function displayPersons(persons) {
-
-		document.getElementById("personTable").innerHTML = "";
-		persons.forEach(displayPerson);
-	}
-
-	function displayPerson(person) {
-		var tr = document.createElement("tr");
-		var ltd = document.createElement("td");
-		var rtd = document.createElement("td");
-		ltd.innerHTML = person.name;
-		rtd.innerHTML = person.birthdate;
-		tr.appendChild(ltd);
-		tr.appendChild(rtd);
-		document.getElementById("personTable").appendChild(tr);
-	}
-
-	function syso(message) {
-
-		document.getElementById("console").innerHTML = "";
-		var result = document.createElement("p");
-		result.innerHTML = message;
-		document.getElementById("console").appendChild(result);
-	}
 </script>
+
 </head>
 <body>
 	<div class="container">
 		<h1>Welcome to the DM Project for the MEP FS23</h1>
-
-		<form>
-			<div class="form-group">
-				<label for="inputLocation">Name</label> <input type="number"
-					class="form-control" id="inputName"
-					aria-describedby="inputHelp" placeholder="Enter Name OR Leave Empty"><small
-					id="inputHelp" class="form-text text-muted">Please enter a
-					name (e.g. Jon) or leave empty to display all persons</small>
-			</div>
-			<button type="button" class="btn btn-primary" onclick="go()">Enter</button>
-		</form>
-
-		<p>&nbsp;</p>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-				</tr>
-			</thead>
-			<tbody id="personTable"></tbody>
-		</table>
-
-		<p>&nbsp;</p>
-		<div id="console"></div>
+		<hr>
+		<h2>Purpose of this Project</h2>
+		<p>
+			This program revolves around the end-of-module exam for the MEP FS23 course, focusing on tourist experiences and trips. It aims to showcase our proficiency in data management, particularly utilizing SQL, MongoDB, and Neo4j databases. Through this project, we aim to demonstrate our programming skills and leverage them to efficiently manage tourist data and their corresponding experiences and trips.
+		</p>
+		<img src="../tourists.jpg" alt="Picture">
 	</div>
 </body>
 </html>
