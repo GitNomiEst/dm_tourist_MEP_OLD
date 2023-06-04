@@ -1,17 +1,6 @@
 package data;
 
-public class DataRestController {
-
-    private final CSVDataService csvDataService;
-
-    public DataRestController(CSVDataService csvDataService) {
-        this.csvDataService = csvDataService;
-    }
-
-}
-
-
-/*package data;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,4 +28,4 @@ public class DataRestController {
             return "Failed to load CSV data";
         }
     }
-}*/
+}
