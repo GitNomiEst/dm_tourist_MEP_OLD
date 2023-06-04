@@ -25,4 +25,8 @@ public class Trip {
     public String getDestination() {
         return destination;
     }
+
+    public long getId() {
+        return id;
+    }
 }

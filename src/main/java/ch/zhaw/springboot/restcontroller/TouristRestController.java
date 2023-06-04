@@ -40,4 +40,15 @@ public class TouristRestController {
 			return new ResponseEntity<List<Tourist>>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@RequestMapping(value = "/trip/{id}/tourist", method = RequestMethod.GET)
+	public ResponseEntity<List<Tourist>> getTouristsByTripId(@PathVariable("id") Long id) {
+		List<Tourist> result = this.repository.findTouristsByTripId(id);
+
+		if (!result.isEmpty()) {
+			return new ResponseEntity<List<Tourist>>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<List<Tourist>>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
