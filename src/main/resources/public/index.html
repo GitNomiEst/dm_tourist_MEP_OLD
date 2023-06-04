@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Tourists & Destinations</title>
+	<title>DM MEP Home</title>
 	<link rel="stylesheet" type="text/css"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
 	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -15,17 +15,52 @@
 </head>
 
 <body>
+
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">DM MEP Project</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="model.html">Entity relationship model</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testdata.html">Testdata</a>
+                    </li>
+			</div>
+		</div>
+	</nav>
+
 	<div class="container">
 		<h1>Welcome to the DM Project for the MEP FS23</h1>
+		<p>Noémie Käser, WIN TZ DSb</p>
+
 		<hr>
+		
 		<h2>Purpose of this Project</h2>
+
 		<p>
 			This program revolves around the end-of-module exam for the MEP FS23 course, focusing on tourist experiences
 			and trips. It aims to showcase our proficiency in data management, particularly utilizing SQL, MongoDB, and
 			Neo4j. Through this project, we aim to demonstrate our programming skills and leverage them to efficiently
 			manage tourist data and their corresponding experiences and trips.
 		</p>
-		<img src="../tourists.jpg" alt="Picture">
+
+		<h2>About the data</h2>
+
+		<p>The Data represents tourists that experience something on a Trip. Tourists have a name and nationality,
+			whereas the experience that comes within a trip has the attribute duration. Trip contains the attribute
+			destination and also represents the supertype for the entities route and point of interest.</p>
+
+		<img src="pics/tourists.jpg" alt="Picture">
 	</div>
 </body>
 

@@ -43,4 +43,6 @@ public class Tourist {
     public Trip getTrip() {
         return trip;
     }
+
+
 }

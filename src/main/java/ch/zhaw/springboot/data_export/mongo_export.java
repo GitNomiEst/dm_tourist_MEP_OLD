@@ -9,8 +9,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.mongodb.ConnectionString;
@@ -33,13 +33,13 @@ public class mongo_export {
     private final String edgesCsvFile = "edges.csv";
 
     private ConnectionString connectionString = new ConnectionString(
-        "mongodb+srv://kaeseno1:eXuzhJ-ZV6KUH4t@cluster0.4pnoho7.mongodb.net/?retryWrites=true&w=majority");
+            "mongodb+srv://kaeseno1:eXuzhJ-ZV6KUH4t@cluster0.4pnoho7.mongodb.net/?retryWrites=true&w=majority");
     private MongoClientSettings settings = MongoClientSettings.builder()
-        .applyConnectionString(connectionString)
-        .serverApi(ServerApi.builder()
-            .version(ServerApiVersion.V1)
-            .build())
-        .build();
+            .applyConnectionString(connectionString)
+            .serverApi(ServerApi.builder()
+                    .version(ServerApiVersion.V1)
+                    .build())
+            .build();
     private MongoClient mongoClient = MongoClients.create(settings);
     private MongoDatabase database = mongoClient.getDatabase("tourist");
     private MongoCollection<Document> edgesCol = database.getCollection("edges");
@@ -58,13 +58,13 @@ public class mongo_export {
 
             for (Tourist tourist : tourists) {
                 Document node = new Document("id", tourist.getId())
-                    .append("name", tourist.getName());
+                        .append("name", tourist.getName());
                 nodes.add(node);
 
                 List<Tourist> relatedTourists = touristRepository.findTouristsByTripId(tourist.getTrip().getId());
                 for (Tourist relatedTourist : relatedTourists) {
                     Document edge = new Document("source", tourist.getId())
-                        .append("target", relatedTourist.getId());
+                            .append("target", relatedTourist.getId());
                     edges.add(edge);
                 }
             }
@@ -86,8 +86,8 @@ public class mongo_export {
 
             for (Document node : nodes) {
                 csvPrinter.printRecord(
-                    node.get("id"),
-                    node.get("name"));
+                        node.get("id"),
+                        node.get("name"));
             }
             csvPrinter.flush();
         } catch (IOException e) {
@@ -102,8 +102,8 @@ public class mongo_export {
             csvPrinter.printRecord("source", "target");
             for (Document edge : edges) {
                 csvPrinter.printRecord(
-                    edge.get("source"),
-                    edge.get("target"));
+                        edge.get("source"),
+                        edge.get("target"));
             }
             csvPrinter.flush();
         } catch (IOException e) {
@@ -112,10 +112,10 @@ public class mongo_export {
     }
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ConfigurableApplicationContext context = SpringApplication.run(mongo_export.class, args);
         mongo_export exporter = context.getBean(mongo_export.class);
         exporter.importDataFromRepository();
         exporter.exportDataToCSV();
+        context.close();
     }
-
 }

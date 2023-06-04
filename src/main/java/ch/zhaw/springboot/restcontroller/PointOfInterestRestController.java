@@ -19,7 +19,7 @@ public class PointOfInterestRestController {
 	@Autowired
 	private PointOfInterestRepository repository;
 
-	@RequestMapping(value = "travel/pointOfInterest", method = RequestMethod.GET)
+	@RequestMapping(value = "travel/interest", method = RequestMethod.GET)
 	public ResponseEntity<List<PointOfInterest>> getPointOfInterest() {
 		List<PointOfInterest> result = this.repository.findAll();
 
@@ -30,7 +30,7 @@ public class PointOfInterestRestController {
 		}
 	}
 
-	@RequestMapping(value = "travel/PointOfInterest/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "travel/interset/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<PointOfInterest>> getPointOfInterestByID(@PathVariable("ID") Long id) {
 		List<PointOfInterest> result = this.repository.findPointOfInterestByID(id);
 
