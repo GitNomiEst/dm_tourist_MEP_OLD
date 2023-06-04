@@ -83,29 +83,33 @@ public class CSVDataService {
     }
 
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
-
-        // Define insert statements
+        // Generate insert statements for Tourist
         String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '"
                 + tourist.getNationality() + "');";
+
+        // Generate insert statements for Experience
         String experienceInsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
+
+        // Generate insert statements for Trip
         String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination()
                 + "', '" + trip.getDistance() + "');";
 
-        // Save to SQL seperate files. PrintWriter & FileWriter are used to write the
-        // insert statements to the respective files.
-        try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
+        // Save Tourist insert statements to a file
+        try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/resources/sql/TouristInsert.sql", true))) {
             writer.println(touristInsertStatement);
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e);
         }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
+        // Save Experience insert statements to a file
+        try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/resources/sql/ExperienceInsert.sql", true))) {
             writer.println(experienceInsertStatement);
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e);
         }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("TripInsert.sql"))) {
+        // Save Trip insert statements to a file
+        try (PrintWriter writer = new PrintWriter(new FileWriter("src/main/resources/sql/TripInsert.sql", true))) {
             writer.println(tripInsertStatement);
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e);
