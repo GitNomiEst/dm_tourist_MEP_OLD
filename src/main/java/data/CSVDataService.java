@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import ch.zhaw.springboot.entities.Experience;
 import ch.zhaw.springboot.entities.Route;
 import ch.zhaw.springboot.entities.Tourist;
-import ch.zhaw.springboot.entities.Trip;
 import ch.zhaw.springboot.repositories.ExperienceRepository;
 import ch.zhaw.springboot.repositories.TouristRepository;
 import ch.zhaw.springboot.repositories.TripRepository;
@@ -24,42 +23,45 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CSVDataService {
     private final ResourceLoader resourceLoader;
     private static final Logger logger = LogManager.getLogger(CSVDataService.class);
-
-    public CSVDataService(ResourceLoader resourceLoader) {
+   
+    @Autowired
+    private TripRepository tripRepository;
+    
+    @Autowired
+    private ExperienceRepository experienceRepository;
+    
+    @Autowired
+    private TouristRepository touristRepository;
+    
+    public CSVDataService(ResourceLoader resourceLoader, TripRepository tripRepository, 
+            ExperienceRepository experienceRepository, TouristRepository touristRepository) {
         this.resourceLoader = resourceLoader;
+        this.tripRepository = tripRepository;
+        this.experienceRepository = experienceRepository;
+        this.touristRepository = touristRepository;
     }
-
-    @Autowired
-    private final TripRepository tripRepository;
-
-    @Autowired
-    private final ExperienceRepository experienceRepository;
-
-    @Autowired
-    private final TouristRepository touristRepository;
-    public List<Trip> loadCSVData() throws IOException {
-        List<Trip> trips = new ArrayList<>();
+    
+    public void loadCSVData() throws IOException {
 
         // Load the CSV file from the specified folder structure
-        Resource resource = resourceLoader.getResource("classpath:test/resources/dm_data_csv/data.csv");
+        Resource resource = resourceLoader.getResource("classpath:dm_data.csv");
 
         try (Reader reader = new InputStreamReader(resource.getInputStream())) {
             CSVParser csvParser = CSVFormat.DEFAULT.withHeader().parse(reader);
 
             // Process each CSV record
-            for (CSVRecord record : csvParser) {
-                String touristName = record.get("tourist_name");
-                String touristNationality = record.get("tourist_nationality");
-                String duration = record.get("duration");
-                String tripDestination = record.get("trip_destination");
-                String tripDistance = record.get("trip_distance");
+            for (CSVRecord record : csvParser) {          
+                String touristName = record.get("Tourist_name");
+                String touristNationality = record.get("Tourist_nationality");
+                String duration = record.get("Duration_inDays");
+                String tripDestination = record.get("Destination");
+                String tripDistance = record.get("Route_distance");
+
 
                 // Create a Tourist object
                 Tourist tourist = new Tourist(touristName, touristNationality);
@@ -70,8 +72,6 @@ public class CSVDataService {
                 // Create a Route object
                 Route trip = new Route(tripDestination, tripDistance);
 
-                trips.add(trip);
-
                 // Generate SQL insert statement
                 generateInsertStatement(tourist, experience, trip);
 
@@ -81,8 +81,6 @@ public class CSVDataService {
 
             }
         }
-
-        return trips;
     }
 
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
@@ -117,5 +115,9 @@ public class CSVDataService {
         } catch (IOException e) {
             logger.error("An error occurred while writing to the file.", e);
         }
+    }
+
+    public Object getLogger() {
+        return null;
     }
 }
