@@ -28,24 +28,24 @@ import java.io.Reader;
 public class CSVDataService {
     private final ResourceLoader resourceLoader;
     private static final Logger logger = LogManager.getLogger(CSVDataService.class);
-   
+
     @Autowired
     private TripRepository tripRepository;
-    
+
     @Autowired
     private ExperienceRepository experienceRepository;
-    
+
     @Autowired
     private TouristRepository touristRepository;
-    
-    public CSVDataService(ResourceLoader resourceLoader, TripRepository tripRepository, 
+
+    public CSVDataService(ResourceLoader resourceLoader, TripRepository tripRepository,
             ExperienceRepository experienceRepository, TouristRepository touristRepository) {
         this.resourceLoader = resourceLoader;
         this.tripRepository = tripRepository;
         this.experienceRepository = experienceRepository;
         this.touristRepository = touristRepository;
     }
-    
+
     public void loadCSVData() throws IOException {
 
         // Load the CSV file from the specified folder structure
@@ -55,13 +55,12 @@ public class CSVDataService {
             CSVParser csvParser = CSVFormat.DEFAULT.withHeader().parse(reader);
 
             // Process each CSV record
-            for (CSVRecord record : csvParser) {          
+            for (CSVRecord record : csvParser) {
                 String touristName = record.get("Tourist_name");
                 String touristNationality = record.get("Tourist_nationality");
                 String duration = record.get("Duration_inDays");
                 String tripDestination = record.get("Destination");
                 String tripDistance = record.get("Route_distance");
-
 
                 // Create a Tourist object
                 Tourist tourist = new Tourist(touristName, touristNationality);
@@ -85,23 +84,19 @@ public class CSVDataService {
 
     private void generateInsertStatement(Tourist tourist, Experience experience, Route trip) {
 
+        // Define insert statements
         String touristInsertStatement = "INSERT INTO tourist (name, nationality) VALUES ('" + tourist.getName() + "', '"
                 + tourist.getNationality() + "');";
         String experienceInsertStatement = "INSERT INTO experience VALUES ('" + experience.getDuration() + "');";
         String tripInsertStatement = "INSERT INTO trips (destination, distance) VALUES ('" + trip.getDestination()
                 + "', '" + trip.getDistance() + "');";
 
-        // Save to SQL files
+        // Save to SQL seperate files. PrintWriter & FileWriter are used to write the
+        // insert statements to the respective files.
         try (PrintWriter writer = new PrintWriter(new FileWriter("TouristInsert.sql"))) {
             writer.println(touristInsertStatement);
         } catch (IOException e) {
-            logger.error("An error occurred while writing to the file.", e); // logger method to catch error within the
-                                                                             // framework Log4j: why? provides more
-                                                                             // flexibility and control over logging
-                                                                             // compared to printing stack traces with
-                                                                             // e.printStackTrace() /allows to
-                                                                             // configure log levels, log destinations,
-                                                                             // ad format log messages
+            logger.error("An error occurred while writing to the file.", e);
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("ExperienceInsert.sql"))) {
@@ -116,6 +111,9 @@ public class CSVDataService {
             logger.error("An error occurred while writing to the file.", e);
         }
     }
+    // Catch errors with framework Log4j -why? provides more flexibility and control
+    // over logging compared to printing stack traces with e.printStackTrace()
+    // allows to configure log levels, log destinations & add format log messages
 
     public Object getLogger() {
         return null;

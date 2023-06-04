@@ -1,5 +1,7 @@
 package ch.zhaw.springboot.entities;
 
+import com.mongodb.lang.Nullable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,6 +42,7 @@ public class Tourist {
         return id;
     }
 
+    @Nullable 
     public Trip getTrip() {
         return trip;
     }
